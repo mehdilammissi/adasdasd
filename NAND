@@ -1,0 +1,43 @@
+const int A1_PIN = 2; // A for F1 (NOR)
+const int B1_PIN = 3; // B for F1 (NOR)
+const int F1_OUT = 8; // NOR Output
+const int A2_PIN = 4; // A for F2 (NAND)
+const int B2_PIN = 5; // B for F2 (NAND)
+const int C2_PIN = 6; // C for F2 (NAND)
+const int D2_PIN = 7; // D for F2 (NAND)
+const int F2_OUT = 9; // NAND Output
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(A1_PIN, INPUT);
+  pinMode(B1_PIN, INPUT);
+  pinMode(F1_OUT, INPUT);
+  pinMode(A2_PIN, INPUT);
+  pinMode(B2_PIN, INPUT);
+  pinMode(C2_PIN, INPUT);
+  pinMode(D2_PIN, INPUT);
+  pinMode(F2_OUT, INPUT);
+  Serial.println("System Ready: Monitoring NOR and NAND...");
+}
+
+void loop() {
+  // Read All Inputs
+  int nA = digitalRead(A1_PIN), nB = digitalRead(B1_PIN), nOut = digitalRead(F1_OUT);
+  int a2 = digitalRead(A2_PIN), b2 = digitalRead(B2_PIN), c2 = digitalRead(C2_PIN), d2 = digitalRead(D2_PIN), f2 = digitalRead(F2_OUT);
+
+  // Print NOR Status
+  Serial.print("NOR Gate -> A:"); Serial.print(nA);
+  Serial.print(" B:"); Serial.print(nB);
+  Serial.print(" | OUT:"); Serial.print(nOut);
+  
+  Serial.print("  ||  ");
+
+  // Print NAND Status
+  Serial.print("NAND Gate -> A:"); Serial.print(a2);
+  Serial.print(" B:"); Serial.print(b2);
+  Serial.print(" C:"); Serial.print(c2);
+  Serial.print(" D:"); Serial.print(d2);
+  Serial.print(" | OUT:"); Serial.println(f2);
+
+  delay(500);
+}
