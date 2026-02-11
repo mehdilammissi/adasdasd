@@ -1,0 +1,58 @@
+// NOR Gate Pins (F1)
+const int A1_PIN = 2;   
+const int B1_PIN = 3;   
+const int F1_OUT = 8;  // NOR Output
+
+// NAND Gate Pins (F2)
+const int A2_PIN = 4;   
+const int B2_PIN = 5;   
+const int C2_PIN = 6;   
+const int D2_PIN = 7;   
+const int F2_OUT = 9;  // Assuming Pin 9 for NAND Output
+
+void setup() {
+  Serial.begin(9600);
+  
+  // Set all pins as INPUT
+  pinMode(A1_PIN, INPUT);
+  pinMode(B1_PIN, INPUT);
+  pinMode(F1_OUT, INPUT);
+  
+  pinMode(A2_PIN, INPUT);
+  pinMode(B2_PIN, INPUT);
+  pinMode(C2_PIN, INPUT);
+  pinMode(D2_PIN, INPUT);
+  pinMode(F2_OUT, INPUT);
+
+  Serial.println("--- Dual Logic Gate Monitor ---");
+}
+
+void loop() {
+  // Read NOR Logic
+  int norA = digitalRead(A1_PIN);
+  int norB = digitalRead(B1_PIN);
+  int norOut = digitalRead(F1_OUT);
+
+  // Read NAND Logic
+  int nandA = digitalRead(A2_PIN);
+  int nandB = digitalRead(B2_PIN);
+  int nandC = digitalRead(C2_PIN);
+  int nandD = digitalRead(D2_PIN);
+  int nandOut = digitalRead(F2_OUT);
+
+  // Display NOR Data
+  Serial.print("NOR  -> A:"); Serial.print(norA);
+  Serial.print(" B:"); Serial.print(norB);
+  Serial.print(" | OUT:"); Serial.print(norOut);
+  
+  Serial.print("  ||  ");
+
+  // Display NAND Data
+  Serial.print("NAND -> A:"); Serial.print(nandA);
+  Serial.print(" B:"); Serial.print(nandB);
+  Serial.print(" C:"); Serial.print(nandC);
+  Serial.print(" D:"); Serial.print(nandD);
+  Serial.print(" | OUT:"); Serial.println(nandOut);
+
+  delay(500); // Half-second refresh rate
+}
